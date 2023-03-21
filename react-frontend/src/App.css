@@ -1,0 +1,15 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 97vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
