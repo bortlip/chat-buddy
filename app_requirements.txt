@@ -1,0 +1,13 @@
+Chat UI Requirements
+---
+
+The chat interface should have a dark background and occupy most of the window width, with minimal left and right margins.
+Messages should be displayed with alternating background colors for User and AI messages.
+Each message should be displayed on a separate line and occupy the entire width of the container.
+The message input area should be at the bottom of the screen, with support for multiline input and sending a message by pressing Enter (Shift-Enter for a newline).
+Both User and AI messages should be sent using the same input area, but with different buttons to indicate the sender. The buttons should be smaller in width and placed next to each other.
+The chat history should automatically scroll up to display the latest messages.
+Text formatting, such as preceding spaces, should be preserved in the output.
+Each message should have an indicator (AI/User) placed in a separate area to the left of the message bubble. The AI/User indicators should be right-aligned relative to the left edge of the message bubble.
+The message bubble for each comment should span the entire width of the container.
+The text within the message bubble should be left-aligned.
