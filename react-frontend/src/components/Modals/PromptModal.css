@@ -1,0 +1,70 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Add this line to ensure the modal appears above input boxes */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.modal-flex-container {
+    display: flex;
+    gap: 16px;
+    /* Increase the gap to 16px */
+    align-items: flex-start;
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-section:first-child {
+    flex-basis: 30%;
+    /* Set the width of the name list section to 66% */
+}
+
+.modal-section:last-child {
+    flex-basis: 70%;
+    /* Set the width of the prompt text box section to 34% */
+}
+
+.prompt-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 300px;
+    overflow-y: auto;
+    /* Change 'scroll' to 'auto' to hide scrollbar when not needed */
+    width: 90%;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    background-color: #f1f1f1;
+    /* Change the background color to a nice light gray */
+    cursor: pointer;
+}
+
+.prompt-list li {
+    text-align: left;
+    /* Add this line to left-align the name list */
+}
+
+.prompt-textbox {
+    width: 100%;
+    resize: none;
+    height: 300px;
+    /* Set the height of the textarea to match the prompt list height */
+}

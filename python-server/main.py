@@ -5,14 +5,23 @@ import threading
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from urllib.parse import unquote
-from my_module.agent import GPT35Agent, AgentSettings
-
-SYSTEM_ROLE = "system"
+from my_module.agent import GPT35Agent
+from my_module.agent_settings import AgentSettings
+from my_module.role import Role
+from my_module.initial_prompt import InitialPrompt
 
 app = Flask(__name__)
 CORS(app)
 
 results = {}
+
+@app.route("/api/initial-prompts", methods=["GET"])
+def get_items():
+    prompts = [
+        InitialPrompt("Assistant", "You are a helpful assistant."),
+        InitialPrompt("Friend", "You are a person and my friend.  Only respond as a person.  Always stay in character."),
+    ]
+    return jsonify([{"name": prompt.name, "prompt": prompt.prompt} for prompt in prompts])
 
 def process_stream(result_id, response_stream):
     current_result = ""
@@ -72,7 +81,7 @@ def get_system_message():
 def set_system_message():
     data = request.get_json()
     prompt = (data['prompt'])
-    role = data.get('role', SYSTEM_ROLE)
+    role = data.get('role', Role.SYSTEM.value)
     agent.set_system_message(prompt, role)
     return jsonify({'status': 'ok'})
 

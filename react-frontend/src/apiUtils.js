@@ -25,7 +25,7 @@ export const pollResult = async (apiEndpoint, result_id, messageID, pollingInter
 
       addMessage(data.message, "AI", setMessages, messageID);
       if (!data.completed) {
-        setTimeout(() => pollResult(apiEndpoint, result_id, messageID, pollingInterval, setMessages));
+        setTimeout(() => pollResult(apiEndpoint, result_id, messageID, pollingInterval, setMessages), pollingInterval);
       }
     } catch (error) {
       console.error(error);

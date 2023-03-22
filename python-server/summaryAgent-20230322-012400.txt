@@ -1,6 +1,0 @@
-2023-03-22 01:24:00,711 - INFO - 
----
-Assistant: 
-    You answer questions based on a provided context.
-
-

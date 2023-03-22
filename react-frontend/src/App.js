@@ -13,7 +13,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [apiEndpoint, setApiEndpoint] = useState("http://localhost:5000");
-  const [pollingInterval, setPollingInterval] = useState(50);
+  const [pollingInterval, setPollingInterval] = useState(200);
   const chatRef = useRef(null);
   const [systemMessage, setSystemMessage] = useState("");
 
@@ -57,10 +57,10 @@ function App() {
                   <ChatInfo messages={messages} />
                   <Chat messages={messages} />
                   <InputForm
-					onUserMessage={(content) => callGpt(apiEndpoint, content, pollingInterval, setMessage, setMessages)}
+					          onUserMessage={(content) => callGpt(apiEndpoint, content, pollingInterval, setMessage, setMessages)}
                     onAiMessage={(message) => addMessage(message, "ai", setMessages)}
-					message={message}
-					setMessage={setMessage}
+					          message={message}
+					          setMessage={setMessage}
                   />
                 </div>
               </>

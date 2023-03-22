@@ -1,6 +1,7 @@
 import logging
 import json
 import os
+
 from datetime import datetime
 
 class ChatLogger:
@@ -8,7 +9,7 @@ class ChatLogger:
     def __init__(self, filename_prefix, base_log_dir="c:/log/gpt/"):
         self.transcript_logger = logging.getLogger('chat_transcript')
         self.transcript_logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S %p')
 
         filename_suffix = datetime.now().strftime("%Y%m%d-%H%M%S")
         filename = f"{filename_prefix}-{filename_suffix}"
