@@ -2,7 +2,16 @@ import os
 import openai
 import time
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+from config import Config
+
+openai.api_key = Config.OPENAI_API_KEY
+
+# messages=[
+#     {"role": "system", "content": "You are a helpful assistant."},
+#     {"role": "user", "content": "Knock knock."},
+#     {"role": "assistant", "content": "Who's there?"},
+#     {"role": "user", "content": "Orange."},
+# ]
 
 def gpt3_all(prompt, max_tokens=3500, temperature=0.0):
     response = openai.Completion.create(
@@ -41,12 +50,9 @@ def gpt35_all(messages, temperature = 0.0, max_tokens=None):
                     messages = messages,
                     temperature = temperature,
                     max_tokens = max_tokens,
-                 #   presence_penalty = 0.5,
-                 #   frequency_penalty = 0.5,
                 )
                 return response
             except Exception as e:
-                # Retry the function after a delay if the API returns an error
                 print(f"API Error: {e}")
                 print(f"Retrying {i+1} time(s) in 10 seconds...")
                 time.sleep(10)
@@ -55,8 +61,6 @@ def gpt35_all(messages, temperature = 0.0, max_tokens=None):
 
 def gpt35_text(messages, temperature = 0.0, max_tokens=None):
     return gpt35_all(messages, temperature).choices[0]['message']['content']
-
-
 
 def gpt35_text_stream(messages, temperature = 0.0, max_tokens=None):
     retry_count = 10
@@ -68,27 +72,12 @@ def gpt35_text_stream(messages, temperature = 0.0, max_tokens=None):
                     messages = messages,
                     temperature = temperature,
                     max_tokens = max_tokens,
-                 #   presence_penalty = 0.5,
-                 #   frequency_penalty = 0.5,
                     stream = True,
                 )
                 return response
             except Exception as e:
-                # Retry the function after a delay if the API returns an error
                 print(f"API Error: {e}")
                 print(f"Retrying {i+1} time(s) in 10 seconds...")
                 time.sleep(10)
                 continue
             break
-
-
-# messages=[
-#     {"role": "system", "content": "You are a helpful assistant."},
-#     {"role": "user", "content": "Knock knock."},
-#     {"role": "assistant", "content": "Who's there?"},
-#     {"role": "user", "content": "Orange."},
-# ]
-
-# response = gpt35_all(messages)
-
-# print(response);

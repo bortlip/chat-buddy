@@ -5,7 +5,7 @@ import threading
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from urllib.parse import unquote
-from my_module.Gpt35ApiAiAgent import GPT35Agent
+from my_module.agent import GPT35Agent, AgentSettings
 
 SYSTEM_ROLE = "system"
 
@@ -14,17 +14,20 @@ CORS(app)
 
 results = {}
 
-def process_stream(result_id):
-    while not agent.current_result_complete:
+def process_stream(result_id, response_stream):
+    current_result = ""
+    for chunk in response_stream:
+        current_result += chunk
+                
         with app.app_context():
             results[result_id] = {
-                'message': agent.get_current_result(),
+                'message': current_result,
                 'completed': False
             }
 
     with app.app_context():
         results[result_id] = {
-            'message': agent.get_current_result(),
+            'message': current_result,
             'completed': True
         }
 
@@ -34,12 +37,12 @@ def add_message():
     content = unquote(data['content'])
     
     agent.add_user_message(content) 
-    agent.step_session_stream()
+    response_stream = agent.step_session_stream()
     
     result_id = str(uuid.uuid4())
     results[result_id] = {'message': "", 'completed': False}
     
-    thread = threading.Thread(target=process_stream, args=(result_id,))
+    thread = threading.Thread(target=process_stream, args=(result_id, response_stream,))
     thread.start()
 
     response = jsonify({"result_id": result_id})
@@ -62,7 +65,7 @@ def clear_messages():
 
 @app.route('/api/system-message', methods=['GET'])
 def get_system_message():
-    result = jsonify({'message': agent.system_message['content']})
+    result = jsonify({'message': agent.system_message.content})
     return result;
 
 @app.route('/api/system-message', methods=['POST'])
@@ -77,5 +80,6 @@ if __name__ == '__main__':
     instructions = """
     You answer questions based on a provided context.
 """
-    agent = GPT35Agent(instructions, 0.0, 3000, None, "summaryAgent")
+    settings = AgentSettings(instructions, "summaryAgent", 2000, 3000, 0.0, 3900)
+    agent = GPT35Agent(settings)
     app.run(debug=True)
