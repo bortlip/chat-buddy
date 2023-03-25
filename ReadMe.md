@@ -24,7 +24,19 @@ cd python-server
 pip install -r requirements.txt
 ```
 
-3. Navigate to the `react-frontend` directory and install the required Node.js packages:
+3. Set the OpenAI API key as an environment variable:
+
+For Windows:
+```
+set OPENAI_API_KEY=your_api_key_here
+```
+
+For Linux and macOS:
+```
+export OPENAI_API_KEY=your_api_key_here
+```
+
+4. Navigate to the `react-frontend` directory and install the required Node.js packages:
 
 ```
 cd ../react-frontend
