@@ -1,0 +1,13 @@
+{
+    "name": "Python: Flask",
+    "type": "python",
+    "request": "attach",
+    "port": 5000,
+    "host": "localhost",
+    "pathMappings": [
+        {
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "."
+        }
+    ]
+}

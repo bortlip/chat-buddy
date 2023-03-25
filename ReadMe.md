@@ -1,6 +1,6 @@
-# My Python Server with React Frontend
+# Python Server with React Frontend
 
-This project is a Python server with a React frontend. It features a chat application powered by the GPT-4 model, and a user interface that allows for easy interaction with the AI.
+This project is a Python server with a React frontend. It features a chat application powered by the chatGPT model, and a user interface that allows for easy interaction with the AI.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ This project is a Python server with a React frontend. It features a chat applic
 1. Clone the repository:
 
 ```
-git clone https://github.com/yourusername/your-repo.git
+git clone https://github.com/bortlip/chat-buddy.git
 ```
 
 2. Navigate to the `python-server` directory and install the required Python packages:
@@ -50,6 +50,6 @@ npm start
 
 ## Project Structure
 
-- `python-server`: Contains the Python server files, including the GPT-4 wrapper and API.
+- `python-server`: Contains the Python server files, including the chatGPT wrapper and API.
 - `react-frontend`: Contains the React frontend files, including components, hooks, and styles.
 

@@ -14,7 +14,7 @@ class GPT35Agent:
     def __init__(self, agent_settings):
         self.agent_settings = agent_settings
         self.messages = []
-        self.system_message = Message(Role.ASSISTANT.value, agent_settings.system_prompt)
+        self.system_message = Message(Role.SYSTEM.value, agent_settings.system_prompt)
         self.system_message_world_length = len(word_tokenize(self.system_message.content))
         
         logger_name = f"GPT35Agent.{agent_settings.filename_prefix}"
